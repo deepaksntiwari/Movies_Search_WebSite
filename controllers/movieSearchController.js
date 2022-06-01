@@ -1,6 +1,6 @@
 firebaseapp.controller('movieSearchController',['$rootScope','$scope', '$http','$window',	'$firebaseAuth', 
 '$firebaseObject', 'Authentication', 'AuthenticationListener', function MyController($rootScope,$scope, $http, $window,$firebaseAuth, $firebaseObject, Authentication, AuthenticationListener)  {
-        var url2 = 'http://www.omdbapi.com/?apikey=6baa30c1&t=';
+        var url2 = 'https://www.omdbapi.com/?apikey=6baa30c1&t=';
         var movieName="";
         $scope.myVar=true;
     //calling API
@@ -73,7 +73,7 @@ firebaseapp.controller('movieSearchController',['$rootScope','$scope', '$http','
     $scope.card_data2 = function (searchterm) {
         console.log(searchterm);
         $scope.jsonObj = [];
-        const url3='http://www.omdbapi.com/?i='+searchterm+'&apikey=6baa30c1';
+        const url3='https://www.omdbapi.com/?i='+searchterm+'&apikey=6baa30c1';
         $http.get(`${url3}`)
             .then(
                 (response) => {
@@ -104,7 +104,7 @@ firebaseapp.controller('movieSearchController',['$rootScope','$scope', '$http','
         var year =   "";
         var genre=   "";
         var actors=  "";
-        const url3='http://www.omdbapi.com/?i='+searchterm+'&apikey=6baa30c1';
+        const url3='https://www.omdbapi.com/?i='+searchterm+'&apikey=6baa30c1';
         
         firebase.auth().onAuthStateChanged(function(firebaseUser) {
             if (firebaseUser) {
@@ -173,7 +173,7 @@ firebaseapp.controller('movieSearchController',['$rootScope','$scope', '$http','
                       for(var i = 0; i < imdbIdArray.length; i++){
                           console.log(i+" "+imdbIdArray.length);
                           console.log(imdbIdArray[i])
-                        const url3='http://www.omdbapi.com/?i='+imdbIdArray[i]+'&apikey=6baa30c1';
+                        const url3='https://www.omdbapi.com/?i='+imdbIdArray[i]+'&apikey=6baa30c1';
 
 $http.get(`${url3}`)
             .then(
