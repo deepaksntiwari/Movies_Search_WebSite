@@ -25,7 +25,7 @@ firebaseapp.controller('InitController', ['$rootScope','$scope', '$http', '$wind
                     for(var i = 0; i < imdbIdArray.length; i++){
                         console.log(i+" "+imdbIdArray.length);
                         console.log(imdbIdArray[i])
-                      const url3='http://www.omdbapi.com/?i='+imdbIdArray[i]+'&apikey=6baa30c1';
+                      const url3='https://www.omdbapi.com/?i='+imdbIdArray[i]+'&apikey=6baa30c1';
 
 $http.get(`${url3}`)
           .then(
