@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" ng-app="firebaseapp">
+<head>
+	<meta charset="UTF-8">
+	<title>AngularJS System Authentication for AngularFire 2</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" href="/css/login.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> 
+	<link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.5/css/unicons.css">
+	<!-- Bootstrap -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+          integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+          crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+          integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+          crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+          crossorigin="anonymous"></script>
+	<!-- Angular -->
+	<script src="angular/angular.min.js"></script>
+	<script src="angular/angular-route.js"></script>
+	<script src="angular/angular-animate.js"></script>
+	<!-- Firebase -->
+	<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+	<script src="https://cdn.firebase.com/libs/angularfire/2.1.0/angularfire.min.js"></script>
+	<!-- App  -->
+	<script src="app.js"></script>
+	<!-- Services -->
+	<script src="services/authentication.js"></script>
+	<script src="services/listener.js"></script>
+	<!-- Controllers -->
+	<script src="controllers/login.js"></script>
+	<script src="controllers/init.js"></script> 
+	<script src="controllers/movieSearchController.js"></script>
+</head>
+
+<body ng-cloak class="fsd">
+
+	<header ng-controller="LoginController">
+		<nav class="cf" ng-include="'views/nav.html'"></nav>
+	</header>
+
+
+	<div class="cf" ng-view>
+		
+	</div>
+
+
+
+</body>
+
+<script>
+  // Go to the overview section in your Firebase Console and click Add Firebase to your Web App to generate this code.
+  // Also, do not forget to create a users child on the Database section of your Firebase Console. User registration are placed there.  
+  // Initialize Firebase
+  var config = {
+	apiKey: "AIzaSyD2_EDgM8JA7WjrT86vI9JEjP65H04gwjM",
+    authDomain: "movieapp-952ea.firebaseapp.com",
+    databaseURL: "https://movieapp-952ea-default-rtdb.firebaseio.com",
+    storageBucket: "movieapp-952ea.appspot.com",
+    messagingSenderId: "508741029803"
+  };
+  firebase.initializeApp(config);
+   // Get a reference to the database service
+  var database = firebase.database();
+</script>

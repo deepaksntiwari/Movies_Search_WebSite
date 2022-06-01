@@ -1,0 +1,16 @@
+<div class="color login">
+		<h1 class="title">Your Movies</h1>
+		<p class=""></p>
+		<div class="card-body">        <!-- list here -->
+			<div class = "" ng-repeat="movie3 in jsonObj4" >
+				<table><tr class="media border border-info">
+					<td>             <div id="posterImg" class="align-self-center img-thumbnail float-left img-rounded ml-2 mr-4"><img src={{movie3.Poster}} alt="img" ></div></td>
+							   <td class="media-body">      <h3 class=""> Title:- {{movie3.Title}}</h3><br><br>
+									 <h3 class=" "> Year:- {{movie3.Year}}</h3><br>
+									 <h3 class="  "> Genre:- {{movie3.Genre}}</h3><br>
+									 <h3 class="  "> Actors:- {{movie3.Actors}}</h3><br>
+								 </td></tr></table>
+								 <br>
+								 </div>
+			</div>
+</div>
