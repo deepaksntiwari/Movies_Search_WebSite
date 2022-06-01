@@ -1,6 +1,9 @@
 
 <div class="container">
-    <h1 class="text-center mt-5">Movies Info App {{user.uid}}</h1>
+    <h1 class="text-center mt-5">Movies Info App</h1>
+    <p class="text-intro">
+	<p class="message" ng-show="message">{{ message }}</p>
+	</p>
     <form id="movieform" autocomplete="off">
         <!-- <div class="form-control"><label for="Movie" >Movie Name</label>
             <input class="form-control" type="text" id="movie" placeholder="Movie..." ng-model="c" ng-change="get_data()">
