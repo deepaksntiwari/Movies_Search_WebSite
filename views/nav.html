@@ -1,5 +1,5 @@
 <div class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Movie Info</a>
+    <a class="navbar-brand" href="#/movie-search">Movie Info</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -11,17 +11,16 @@
                 <a class="nav-link" href="#/movie-search">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#/docs">Docs</a>
+                <a class="nav-link" href="#/playlists">Playlists</a>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link " ng-click="showPlaylist()" href="#/playlists" id="navbarDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Playlists
-                </a>
+            <li class="nav-item">
+                <a class="nav-link" href="#/docs">Docs</a>
             </li>
 
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" ng-click="signout(user)">LogOut</button>
+            <button  class="btn btn-outline-success my-2 my-sm-0" type="submit" ng-if="loggedin" ng-click="signout(user)">LogOut</button>
+            <a ng-if="loggedin==false" class="btn btn-outline-success my-2 my-sm-0" type="submit" href="#/login">LogIn</a>
+
         </form>
     </div>

@@ -160,7 +160,10 @@ h6 span {
   z-index: 20;
   display: block;
 }
-
+.card-body{
+      height: 250px;
+      width: 900px;
+}
 
 .form-group {
   position: relative;

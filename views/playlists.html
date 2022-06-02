@@ -1,11 +1,11 @@
-<div class="color login">
+<div class="color login" data-ng-init="showPlaylist()">
 	<h1 class="title">Your Movies</h1>
 	<p class=""></p>
-	<div class="card-body">
+	<div class="card-body ">
 		<!-- list here -->
-		<div class="" ng-repeat="movie3 in jsonObj4">
+		<div ng-if="hidePlaylist==false" class="" ng-repeat="movie3 in jsonObj4">
 			<table>
-				<tr class="media border border-info">
+				<tr class="media ">
 					<td>
 						<div id="posterImg" class="align-self-center img-thumbnail float-left img-rounded ml-2 mr-4">
 							<img src={{movie3.Poster}} alt="img"></div>
@@ -17,6 +17,8 @@
 						<h3 class="  "> Actors:- {{movie3.Actors}}</h3><br>
 					</td>
 				</tr>
+				<tr><td><button class="btn btn-block" ng-click="deleteFromPlaylist2(movie3.imdbID)"
+					ng-disabled="loggedin==false">Delete From Playlists</button></td></tr>
 			</table>
 			<br>
 		</div>

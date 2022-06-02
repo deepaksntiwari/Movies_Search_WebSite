@@ -17,14 +17,15 @@
                 <div class="search-list" id="search-list" ng-model="myVar" ng-if="myVar">
                     <!-- list here -->
                     <div class="search-list-item" ng-repeat="movie2 in jsonObj2">
+                        <div class="search-list-item" ng-click="card_data2(movie2.imdbID)" >
                         <div class="search-item-thumbnail">
                             <img src={{movie2.Poster}}>
                         </div>
-                        <div class="search-item-info" ng-click="card_data2(movie2.imdbID)">
+                        <div class="search-item-info" >
                             <h3>{{movie2.Title}}</h3>
                             <p>{{movie2.Year}}</p>
                         </div>
-                    </div>
+                  </div>  </div>
                 </div>
             </div>
         </div><br>
@@ -53,6 +54,7 @@
                                         <h3 class="  "> Actors:- {{movie.Actors}}</h3><br>
                                         <button class="btn btn-block" ng-click="addToPlaylist(movie.imdbID)"
                                             ng-disabled="loggedin==false">Add to Playlists</button>
+                                        
                                     </td>
                                 </tr>
                             </table>
@@ -75,9 +77,9 @@
     <div class="card-body">
         <!-- list here -->
         <button class="btn btn-block" ng-click="init()" ng-disabled="loggedin==false">Show Playlists</button><br>
-        <div class="" ng-repeat="movie3 in jsonObj3">
+        <div ng-if="hidePlaylist==false" class="" ng-repeat="movie3 in jsonObj3">
             <table>
-                <tr class="media border border-info">
+                <tr class="media">
                     <td>
                         <div id="posterImg" class="align-self-center img-thumbnail float-left img-rounded ml-2 mr-4">
                             <img src={{movie3.Poster}} alt="img"></div>
@@ -87,6 +89,9 @@
                         <h3 class=" "> Year:- {{movie3.Year}}</h3><br>
                         <h3 class="  "> Genre:- {{movie3.Genre}}</h3><br>
                         <h3 class="  "> Actors:- {{movie3.Actors}}</h3><br>
+                        <button class="btn btn-block" ng-click="deleteFromPlaylist(movie3.imdbID)"
+                                            ng-disabled="loggedin==false">Delete From Playlists</button>
+                                          
                     </td>
                 </tr>
             </table>

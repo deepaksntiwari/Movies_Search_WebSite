@@ -17,7 +17,7 @@ firebaseapp.factory('Authentication',
 						  $rootScope.message = "Welcome back, " + user.email + "!";
 						  $rootScope.user = firebaseUser;
 						  $rootScope.loggedin=true;
-						  console.log(firebaseUser);
+						  //console.log(firebaseUser);
 						});
 						AuthenticationListener.getUser(firebaseUser);
 					// } 
@@ -60,11 +60,12 @@ firebaseapp.factory('Authentication',
 		  	.then(function(firebaseUser){
 			  	$rootScope.$apply(function () {
 			  		$rootScope.message = "Hi " + user.logname + ", thanks for registering with this e-mail, " + user.email;
+					  $location.path('/movie-search'); 
 			  	});	
 			  	var userId = firebaseUser.uid;
 			  	var first = user.logname;
 			  	var email = user.email;
-			  	console.log(userId);
+			  	//console.log(userId);
 			  	
 				firebase.database().ref('users/' + userId).set({
 				    date: firebase.database.ServerValue.TIMESTAMP,
@@ -82,8 +83,8 @@ firebaseapp.factory('Authentication',
 		     	//  });
 				
 			  	
-			  	console.log(firebaseUser.email);
-			  	console.log(user);	
+			  	//console.log(firebaseUser.email);
+			  	//console.log(user);	
 			  	
 			  	//return firebaseUser;
 			  	
@@ -106,15 +107,29 @@ firebaseapp.factory('Authentication',
 			firebase.auth().signOut().then(function() {
 			  $rootScope.$apply(function () {
 			  	$rootScope.message =  "User " + user.email + " signed out successfully!";
+				  Swal.fire({
+					position: 'top-end',
+					icon: 'success',
+					title: "User " + user.email + " signed out successfully!",
+					showConfirmButton: false,
+					timer: 1500
+				  })
 				  $location.path('/login'); 
 			  	$rootScope.user = {};
 				  $rootScope.loggedin=false;
 			  });
-			  console.log(firebaseUser.email);
+			  //console.log(firebaseUser.email);
 			  return firebaseUser;
 			}, function(error) {
 			  $rootScope.$apply(function () {
 			  	$rootScope.message =  "Something went wrong";
+				  Swal.fire({
+					position: 'top-end',
+					icon: 'failure',
+					title: "Something went Wrong",
+					showConfirmButton: false,
+					timer: 1500
+				  }) 
 			  });
 			});			
 		} // signout method

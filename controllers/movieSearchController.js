@@ -6,6 +6,7 @@ firebaseapp.controller('movieSearchController', ['$rootScope', '$scope', '$http'
         //calling API
 
         $scope.get_data = function () {
+            $scope.hidePlaylist=true;
             var movieName = $scope.c;
             $scope.myVar = true;
             $scope.jsonObj2 = [];
@@ -38,6 +39,8 @@ firebaseapp.controller('movieSearchController', ['$rootScope', '$scope', '$http'
 
         };
         $scope.card_data = function () {
+            $scope.hidePlaylist=true;
+            $scope.myVar=false;
             movieName = $scope.c;
             $scope.jsonObj = [];
             console.log(movieName);
@@ -74,6 +77,7 @@ firebaseapp.controller('movieSearchController', ['$rootScope', '$scope', '$http'
             }
         }
         $scope.card_data2 = function (searchterm) {
+            $scope.hidePlaylist=true;
             console.log(searchterm);
             $scope.jsonObj = [];
             const url3 = 'https://www.omdbapi.com/?i=' + searchterm + '&apikey=6baa30c1';
@@ -102,7 +106,6 @@ firebaseapp.controller('movieSearchController', ['$rootScope', '$scope', '$http'
 
 
         $rootScope.addToPlaylist = function (searchterm) {
-            var userId = $rootScope.user.uid;
             var title = "";
             var year = "";
             var genre = "";
@@ -121,14 +124,27 @@ firebaseapp.controller('movieSearchController', ['$rootScope', '$scope', '$http'
                             var dataFromdb = snapshot.val().MovieData;
                             console.log(dataFromdb);
                             dataFromdb = dataFromdb + " " + searchterm;
-                            firebase.database().ref('Playlists/' + userId).set({
+                            firebase.database().ref('Playlists/' + uid).set({
                                 date: firebase.database.ServerValue.TIMESTAMP,
-                                userId: userId,
+                                userId: uid,
                                 MovieData: dataFromdb
                             });
+                            $rootScope.$apply(function () {
+                                $rootScope.message = "Movie Added to Playlist";                          
+                              });
+                              if(searchterm)
+                              Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Movie Added To Playlist',
+                                showConfirmButton: false,
+                                timer: 1500
+                              })
+                              searchterm="";
                         }
 
                     }).catch(function (error) {
+                        var userId = $rootScope.user.uid;
                         firebase.database().ref('Playlists/' + userId).set({
                             date: firebase.database.ServerValue.TIMESTAMP,
                             userId: userId,
@@ -136,6 +152,13 @@ firebaseapp.controller('movieSearchController', ['$rootScope', '$scope', '$http'
                         });
                         $rootScope.$apply(function () {
                             $rootScope.message = error.message;
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'error',
+                                title: 'Unable to add movie to Playlist\n please try in few seconds',
+                                showConfirmButton: false,
+                                timer: 1500
+                              })
                         });
                     });
                 } else {
@@ -148,16 +171,16 @@ firebaseapp.controller('movieSearchController', ['$rootScope', '$scope', '$http'
             });
 
 
-            console.log(userId);
 
 
 
         };
 
         $rootScope.init = function () {
+            $scope.hidePlaylist=false;
             $rootScope.jsonObj3 = [];
 
-            var userId = $rootScope.user.uid;
+            // var userId = $rootScope.user.uid;
             var title = "";
             var year = "";
             var genre = "";
@@ -231,4 +254,58 @@ firebaseapp.controller('movieSearchController', ['$rootScope', '$scope', '$http'
                 }
             });
         };
+        $rootScope.deleteFromPlaylist=function(searchterm){
+            console.log("item to be deleted =>"+searchterm);
+            firebase.auth().onAuthStateChanged(function (firebaseUser) {
+                if (firebaseUser) {
+
+                    //console.log("AuthenticationListener: " + firebaseUser.uid);
+                    firebase.database().ref('/Playlists/' + firebaseUser.uid).once('value').then(function (snapshot) {
+                        var uid = snapshot.val().userId;
+                        console.log(uid);
+                        if (uid != undefined) {
+                            var dataFromdb = snapshot.val().MovieData;
+                            console.log(dataFromdb);
+                            var imdbIdArray = dataFromdb.split(" ");
+
+                            function removeDuplicates(arr) {
+                                return arr.filter((item,
+                                    index) => arr.indexOf(item) === index);
+                            }
+
+                            console.log(removeDuplicates(imdbIdArray));
+                            imdbIdArray = removeDuplicates(imdbIdArray);
+                            for( var i = 0; i < imdbIdArray.length; i++){ 
+    
+                                if ( imdbIdArray[i] === searchterm) { 
+                        
+                                    imdbIdArray.splice(i, 1); 
+                                    console.log("item removed "+imdbIdArray)
+                                }
+                            
+                            }
+                            dataFromdb=imdbIdArray.join(" ");
+                            firebase.database().ref('Playlists/' + uid).set({
+                                date: firebase.database.ServerValue.TIMESTAMP,
+                                userId: uid,
+                                MovieData: dataFromdb
+                            });
+                            $rootScope.init();
+
+                        }
+
+                    }).catch(function (error) {
+                        $rootScope.$apply(function () {
+                            $rootScope.message = error.message;
+                        });
+                    });
+                } else {
+                    // No user is signed in.
+                    // $rootScope.$apply(function () {
+                    // 	$scope.message = "";
+                    // });
+                    console.log("please sign in");
+                }
+            });
+        }
     }]);
