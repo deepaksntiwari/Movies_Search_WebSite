@@ -1,15 +1,7 @@
-<!-- <div class="branding"><a ng-href="#/">AngularJS[AngularFire 2] APP</a></div>
-<ul>
-	<li ng-show="user.first"><a ng-href="#" ng-click="signout(user)">Sign Out</a></li>
-	<li><a ng-hide="user.first" ng-href="#/login">Login</a></li>
-	<li><a ng-hide="user.first" ng-href="#/register">Register</a></li>
-</ul>
-<ul ng-show="user.first">
-	<li><a ng-href="#/account">Welcome back, {{ user.first }}!</a></li>
-</ul> -->
 <div class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Movie Info</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -22,14 +14,14 @@
                 <a class="nav-link" href="#/docs">Docs</a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link " ng-click="showPlaylist()" href="#/playlists" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link " ng-click="showPlaylist()" href="#/playlists" id="navbarDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Playlists
                 </a>
             </li>
-           
+
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit" ng-click="signout(user)">LogOut</button>
         </form>
     </div>
-	

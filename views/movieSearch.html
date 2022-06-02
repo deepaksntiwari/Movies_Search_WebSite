@@ -1,27 +1,27 @@
-
 <div class="container">
     <h1 class="text-center mt-5">Movies Info App</h1>
     <p class="text-intro">
-	<p class="message" ng-show="message">{{ message }}</p>
-	</p>
+    <p class="message" ng-show="message">{{ message }}</p>
+    </p>
     <form id="movieform" autocomplete="off">
         <!-- <div class="form-control"><label for="Movie" >Movie Name</label>
             <input class="form-control" type="text" id="movie" placeholder="Movie..." ng-model="c" ng-change="get_data()">
         </div> -->
 
-        <div class = "search-container">
-            <div class = "search-element">
+        <div class="search-container">
+            <div class="search-element">
                 <h3>Search Movie:</h3>
-                <input type = "text" class = "form-control" placeholder="Search Movie Title ..." id = "movie-search-box" ng-model="c" ng-change="get_data()">
+                <input type="text" class="form-control" placeholder="Search Movie Title ..." id="movie-search-box"
+                    ng-model="c" ng-change="get_data()">
 
-                <div class = "search-list" id = "search-list" ng-model="myVar" ng-if="myVar">
+                <div class="search-list" id="search-list" ng-model="myVar" ng-if="myVar">
                     <!-- list here -->
-                    <div class = "search-list-item" ng-repeat="movie2 in jsonObj2" >
-                        <div class = "search-item-thumbnail">
-                            <img src = {{movie2.Poster}}>
+                    <div class="search-list-item" ng-repeat="movie2 in jsonObj2">
+                        <div class="search-item-thumbnail">
+                            <img src={{movie2.Poster}}>
                         </div>
-                        <div class = "search-item-info" ng-click="card_data2(movie2.imdbID)">
-                            <h3 >{{movie2.Title}}</h3>
+                        <div class="search-item-info" ng-click="card_data2(movie2.imdbID)">
+                            <h3>{{movie2.Title}}</h3>
                             <p>{{movie2.Year}}</p>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
             </div>
         </div><br>
         <div class="" id="searchBtn">
-            <button class="btn btn-block"  ng-click="card_data()">
+            <button class="btn btn-block" ng-click="card_data()">
                 Search Movie
             </button>
         </div>
@@ -40,14 +40,22 @@
                     <div class="card bg-dark text-white">
                         <div class="card-body">
                             <h2>Movie Info</h2><br>
-<table><tr>
-           <td>             <div id="posterImg" class="img-thumbnail float-left img-rounded ml-2 mr-4"><img src={{movie.Poster}} alt="img" ></div></td>
-                      <td>      <h3 class=""> Title:- {{movie.Title}}</h3><br><br>
-                            <h3 class=" "> Year:- {{movie.Year}}</h3><br>
-                            <h3 class="  "> Genre:- {{movie.Genre}}</h3><br>
-                            <h3 class="  "> Actors:- {{movie.Actors}}</h3><br>
-                            <button class="btn btn-block" ng-click="addToPlaylist(movie.imdbID)" ng-disabled="loggedin==false">Add to Playlists</button>
-                        </td></tr></table>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div id="posterImg" class="img-thumbnail float-left img-rounded ml-2 mr-4"><img
+                                                src={{movie.Poster}} alt="img"></div>
+                                    </td>
+                                    <td>
+                                        <h3 class=""> Title:- {{movie.Title}}</h3><br><br>
+                                        <h3 class=" "> Year:- {{movie.Year}}</h3><br>
+                                        <h3 class="  "> Genre:- {{movie.Genre}}</h3><br>
+                                        <h3 class="  "> Actors:- {{movie.Actors}}</h3><br>
+                                        <button class="btn btn-block" ng-click="addToPlaylist(movie.imdbID)"
+                                            ng-disabled="loggedin==false">Add to Playlists</button>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -56,23 +64,34 @@
         <div id="errorData" class="img-fluid justify-content-around" ng-if="m_data==='False'">
             <h1>No Data Found</h1>
             <div class="card" style="width: 30rem;">
-                <img class="card-img-top" src="https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png" alt="Card image cap">
+                <img class="card-img-top"
+                    src="https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png"
+                    alt="Card image cap">
                 <div class="card-body">
                 </div>
-            </div>            </div>
+            </div>
+        </div>
     </form><br><br>
-  <div class="card-body">        <!-- list here -->
+    <div class="card-body">
+        <!-- list here -->
         <button class="btn btn-block" ng-click="init()" ng-disabled="loggedin==false">Show Playlists</button><br>
-        <div class = "" ng-repeat="movie3 in jsonObj3" >
-            <table><tr class="media border border-info">
-                <td>             <div id="posterImg" class="align-self-center img-thumbnail float-left img-rounded ml-2 mr-4"><img src={{movie3.Poster}} alt="img" ></div></td>
-                           <td class="media-body">      <h3 class=""> Title:- {{movie3.Title}}</h3><br><br>
-                                 <h3 class=" "> Year:- {{movie3.Year}}</h3><br>
-                                 <h3 class="  "> Genre:- {{movie3.Genre}}</h3><br>
-                                 <h3 class="  "> Actors:- {{movie3.Actors}}</h3><br>
-                             </td></tr></table>
-                             <br>
-                             </div>
+        <div class="" ng-repeat="movie3 in jsonObj3">
+            <table>
+                <tr class="media border border-info">
+                    <td>
+                        <div id="posterImg" class="align-self-center img-thumbnail float-left img-rounded ml-2 mr-4">
+                            <img src={{movie3.Poster}} alt="img"></div>
+                    </td>
+                    <td class="media-body">
+                        <h3 class=""> Title:- {{movie3.Title}}</h3><br><br>
+                        <h3 class=" "> Year:- {{movie3.Year}}</h3><br>
+                        <h3 class="  "> Genre:- {{movie3.Genre}}</h3><br>
+                        <h3 class="  "> Actors:- {{movie3.Actors}}</h3><br>
+                    </td>
+                </tr>
+            </table>
+            <br>
         </div>
     </div>
+</div>
 </div>

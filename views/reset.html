@@ -1,5 +1,5 @@
 <section class="login">
-	
+
 	<p class="text-intro">
 	<p>RESET</p>
 	<p class="message" ng-show="message">{{ message }}</p>
@@ -8,7 +8,7 @@
 	<form name="register" ng-submit="reset()" novalidate>
 		<fieldset>
 			<input type="email" name="email" placeholder="Enter your e-mail" ng-model="user.email" ng-required="true">
-			<p ng-show="register.email.$invalid && register.email.$touched">Insert a valid e-mail</p>			
+			<p ng-show="register.email.$invalid && register.email.$touched">Insert a valid e-mail</p>
 		</fieldset>
 		<button type="submit" class="btn" ng-disabled="register.$invalid">Reset Password</button>
 	</form>
